@@ -1,0 +1,39 @@
+# h1 Hei Ansiblen maailma
+## tehtävä X
+Karvinen 2026: SSH public key - Login without password
+*SSH on johtava ratkaisu turvalliseen kirjautumiseen servereille
+*SSH pyörii taustalla monessa tuotteessa: git, rsync, ansible
+Karvinen 2026: Hello Ansible
+*Ansible on vapaan lähdekoodin työkalu järjestelmien hallintaan ja automaatioon
+*Ansible ei tarvitse erillistä taustaohjelmaa kohdekoneille, vaan se ohjaa niitä tavallisen SSH-yhteyden ja Pythonin yli
+*keskeiset komennot
+*ansible -i hosts all -m ping – Ad-hoc-pikakomento, jolla testataan, saako Ansible yhteyden inventory-tiedostossa määriteltyihin koneisiin.
+*ansible-playbook -i hosts playbook.yml – Komento, jolla ajetaan YAML-muotoinen Playbook-tiedosto, joka suorittaa halutut automaatiotehtävät kohdekoneilla.
+## tehtävä A: asennettu Debian Oheismateriaalia, lukemista ja asennuspaketteja # ↑
+Debian stable 13-trixie levykuva debian-live-13.4.0-amd64-xfce.iso (3.6 GB) linkki vanhentunut joten kaivettu Debian kansiosta. ladattu tiedosto ja yritetty asentaa Virtualboxiin.
+Muutaman kerran jouduin asentamaan, koska olin valinnut vanhoja eri linuxeja asaennettavaksi kunnes tajusin tehneeni virheen. Tämän jälkeen asennus onnistui ilman ongelmia.
+
+## Tehtävä B: Sshecrets
+Asennetaan OpenSSH-palvelin käsin ja testataan se.
+
+1. Päivitetään pakettivarastot ja asennetaan OpenSSH-palvelin:
+```bash
+sudo apt-get update
+sudo apt-get install -y ssh
+```
+
+2. Varmistetaan, että SSH käynnistyy automaattisesti järjestelmän mukana ja laitetaan se heti päälle:
+```bash
+sudo systemctl enable --now ssh
+```
+
+3. Testataan kirjautuminen paikallisesti (localhost):
+```bash
+ssh localhost
+```
+*Huomio: Ensimmäisellä kerralla järjestelmä kysyy varmistusta sormenjäljestä (kirjoita `yes` ja paina Enter). Tämän jälkeen syötetään käyttäjän salasana. Yhteys onnistui!*
+
+4. Poistutaan SSH-yhteydestä takaisin omaan terminaaliin:
+```bash
+exit
+```
