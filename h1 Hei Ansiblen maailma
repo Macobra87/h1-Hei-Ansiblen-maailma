@@ -17,10 +17,16 @@ Karvinen 2026: Hello Ansible
 Debian stable 13-trixie levykuva debian-live-13.4.0-amd64-xfce.iso (3.6 GB) linkki vanhentunut joten kaivettu Debian kansiosta. ladattu tiedosto ja yritetty asentaa Virtualboxiin.
 Muutaman kerran jouduin asentamaan, koska olin valinnut vanhoja eri linuxeja asaennettavaksi kunnes tajusin tehneeni virheen. Tämän jälkeen asennus onnistui ilman ongelmia.
 Ja vielä kerran uudelleen.. Koodi oli muka väärin. (eipä muuten varmasti ollut). Kaikki tähän mennessä tulleet viat ja vikakoodit ovat olleet minusta itsestäni aiheutuneita. Väärät koodit. asensin uudestaan. vika ilmoituksia
-olin lisännyt koodia paikkaan johon ei tarvinnut, unohdin kopioida 
+olin lisännyt koodia paikkaan johon ei tarvinnut, unohdin kopioida
+
+
+*** Kuvakaappaukset asennuksesta
+<img width="1325" height="723" alt="Asennus debian" src="https://github.com" />
+<img width="1325" height="735" alt="Asennus 2" src="https://github.com" />
+<img width="1325" height="719" alt="Asennus3" src="https://github.com" />
+
 ## Tehtävä B: Sshecrets
 Asennetaan OpenSSH-palvelin käsin ja testataan se.
-
 1. Päivitetään pakettivarastot ja asennetaan OpenSSH-palvelin:
 ```bash
 sudo apt-get update
@@ -42,14 +48,18 @@ ssh localhost
 ```bash
 exit
 ```
-
+*** kuvakaappaukset SSH-asennus ja testaus: 
+<img width="1530" height="719" alt="SSH asennus" src="https://github.com" />
+<img width="1325" height="719" alt="local host keygen" src="https://github.com" />
 
 ** tehtävä C
 Pubkey
 Noudatettu tehtävän annon ohjeistusta ja luotu ssh-keygen komennolla avainpari jonka jälkeen se kopioitiin localhostiin komennolla ssh-copy-id localhost. tämän jälkeen ssh ei vaatinut salasanaa ja päästi helpommin sisälle.
 Ensimmäisellä kerralla annoin vahingossa salasanaksi saman joka minulla koneessa oli. mutta sitten tein uuden parin ja jätin koodin tyhjäksi. Sitten kun olin taas omat sähläykset korjannut sain testattua ssh localhost komennolla yhteyttä ja se aukesi ilman kummempia ongelmia.
 
-
+### Kuvakaappaukset avaimen luonnista ja kopioinnista:
+<img width="1325" height="719" alt="Keygen" src="https://github.com" />
+<img width="1325" height="719" alt="onnistuminen" src="https://github.com" />
 
 **  Tehtävä D
 Taas ohjeistusta seuraten päästiin jatkamaan Hei Ansible tehtävään. Hei Ansible ja alkuun Ansiblen asennus. Ohjeita noudattaen
@@ -90,3 +100,6 @@ Tiedostoon kirjailtiin seuraavaa :
 Lopuksi komennon ajo ansible-playbook -i hosts.ini playbook.yml
 
 korjausten jälkeen ohjelma suoritti tehtävän virheettömästi loppuun ('ok=2')
+### Kuvakaappaukset Ansiblen vaiheista ja onnistumisesta:
+<img width="1886" height="747" alt="ongelmia" src="https://github.com" />
+<img width="1886" height="719" alt="ja vikaa" src="https://github.com" />
