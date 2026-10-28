@@ -12,7 +12,7 @@ Karvinen 2026: Hello Ansible
 ## tehtävä A: asennettu Debian Oheismateriaalia, lukemista ja asennuspaketteja # ↑
 Debian stable 13-trixie levykuva debian-live-13.4.0-amd64-xfce.iso (3.6 GB) linkki vanhentunut joten kaivettu Debian kansiosta. ladattu tiedosto ja yritetty asentaa Virtualboxiin.
 Muutaman kerran jouduin asentamaan, koska olin valinnut vanhoja eri linuxeja asaennettavaksi kunnes tajusin tehneeni virheen. Tämän jälkeen asennus onnistui ilman ongelmia.
-
+Ja vielä kerran uudelleen.. Koodi oli muka väärin. (eipä muuten varmasti ollut)
 ## Tehtävä B: Sshecrets
 Asennetaan OpenSSH-palvelin käsin ja testataan se.
 
