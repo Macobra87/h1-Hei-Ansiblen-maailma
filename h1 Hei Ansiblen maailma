@@ -3,16 +3,19 @@
 Karvinen 2026: SSH public key - Login without password
 *SSH on johtava ratkaisu turvalliseen kirjautumiseen servereille
 *SSH pyörii taustalla monessa tuotteessa: git, rsync, ansible
+*salasanaton kirjautuminen helpottaa virtuaalikoneiden hallintaa. (En päässyt vanhoille koneille enään sisään koska salasanat päässeet unohtumaan)
+
 Karvinen 2026: Hello Ansible
 *Ansible on vapaan lähdekoodin työkalu järjestelmien hallintaan ja automaatioon
 *Ansible ei tarvitse erillistä taustaohjelmaa kohdekoneille, vaan se ohjaa niitä tavallisen SSH-yhteyden ja Pythonin yli
 *keskeiset komennot
 *ansible -i hosts all -m ping – Ad-hoc-pikakomento, jolla testataan, saako Ansible yhteyden inventory-tiedostossa määriteltyihin koneisiin.
-*ansible-playbook -i hosts playbook.yml – Komento, jolla ajetaan YAML-muotoinen Playbook-tiedosto, joka suorittaa halutut automaatiotehtävät kohdekoneilla.
+*ansible-playbook -i hosts playbook.yml – Komento, jolla ajetaan YAML-muotoinen Playbook-tiedosto, joka suorittaa halutut automaatiotehtävät kohdekoneilla. Tällä tehtiin myöhemmin Hello Ansible tehtävä.
 ## tehtävä A: asennettu Debian Oheismateriaalia, lukemista ja asennuspaketteja # ↑
 Debian stable 13-trixie levykuva debian-live-13.4.0-amd64-xfce.iso (3.6 GB) linkki vanhentunut joten kaivettu Debian kansiosta. ladattu tiedosto ja yritetty asentaa Virtualboxiin.
 Muutaman kerran jouduin asentamaan, koska olin valinnut vanhoja eri linuxeja asaennettavaksi kunnes tajusin tehneeni virheen. Tämän jälkeen asennus onnistui ilman ongelmia.
-Ja vielä kerran uudelleen.. Koodi oli muka väärin. (eipä muuten varmasti ollut)
+Ja vielä kerran uudelleen.. Koodi oli muka väärin. (eipä muuten varmasti ollut). Kaikki tähän mennessä tulleet viat ja vikakoodit ovat olleet minusta itsestäni aiheutuneita. Väärät koodit. asensin uudestaan. vika ilmoituksia
+olin lisännyt koodia paikkaan johon ei tarvinnut, unohdin kopioida 
 ## Tehtävä B: Sshecrets
 Asennetaan OpenSSH-palvelin käsin ja testataan se.
 
@@ -37,3 +40,51 @@ ssh localhost
 ```bash
 exit
 ```
+
+
+** tehtävä C
+Pubkey
+Noudatettu tehtävän annon ohjeistusta ja luotu ssh-keygen komennolla avainpari jonka jälkeen se kopioitiin localhostiin komennolla ssh-copy-id localhost. tämän jälkeen ssh ei vaatinut salasanaa ja päästi helpommin sisälle.
+Ensimmäisellä kerralla annoin vahingossa salasanaksi saman joka minulla koneessa oli. mutta sitten tein uuden parin ja jätin koodin tyhjäksi. Sitten kun olin taas omat sähläykset korjannut sain testattua ssh localhost komennolla yhteyttä ja se aukesi ilman kummempia ongelmia.
+
+
+
+**  Tehtävä D
+Taas ohjeistusta seuraten päästiin jatkamaan Hei Ansible tehtävään. Hei Ansible ja alkuun Ansiblen asennus. Ohjeita noudattaen
+Ansible is convenintly in Debian repositories.
+
+sudo apt-get update
+sudo apt-get install ansible micro bash-completion tree
+
+Test SSH with Ansible # ↑
+Kansion luontia seuraavaksi
+
+cd
+mkdir ansible/
+cd ansible/
+Let's write a list of hosts we'll be controlling. Create "hosts.ini", and add "localhost" there.
+seuraavaksi hosts.ini tiedosto joka piti sisällään localhost kohteen
+micro hosts.ini
+sisällön tarkistus.
+cat hosts.ini
+
+localhost
+
+SSH yhteyden testaus uptime komentoa käyttäen
+ansible all -a 'uptime' -i hosts.ini
+
+Tulos oli vihreällä ja saatiin uptime näkyviin.
+Seuraavana tehtiin komento -playbook.yml johon sitten taiteiltiin seuraava yml koodi... (sisennykset tuotti vähän ongelmia mutta usean tarkistuksen jälkeen saatiin toimimaan.
+Tiedostoon kirjailtiin seuraavaa :
+
+---
+- name: Hei Maailma Testi
+  hosts: all
+  tasks:
+    - name: tulosta Hei Maailma
+      ansible.builtin.debug:
+        msg: "Hei maailma! Ansible toimii."
+
+Lopuksi komennon ajo ansible-playbook -i hosts.ini playbook.yml
+
+korjausten jälkeen ohjelma suoritti tehtävän virheettömästi loppuun ('ok=2')
