@@ -11,6 +11,8 @@ Karvinen 2026: Hello Ansible
 *keskeiset komennot
 *ansible -i hosts all -m ping – Ad-hoc-pikakomento, jolla testataan, saako Ansible yhteyden inventory-tiedostossa määriteltyihin koneisiin.
 *ansible-playbook -i hosts playbook.yml – Komento, jolla ajetaan YAML-muotoinen Playbook-tiedosto, joka suorittaa halutut automaatiotehtävät kohdekoneilla. Tällä tehtiin myöhemmin Hello Ansible tehtävä.
+
+
 ## tehtävä A: asennettu Debian Oheismateriaalia, lukemista ja asennuspaketteja # ↑
 Debian stable 13-trixie levykuva debian-live-13.4.0-amd64-xfce.iso (3.6 GB) linkki vanhentunut joten kaivettu Debian kansiosta. ladattu tiedosto ja yritetty asentaa Virtualboxiin.
 Muutaman kerran jouduin asentamaan, koska olin valinnut vanhoja eri linuxeja asaennettavaksi kunnes tajusin tehneeni virheen. Tämän jälkeen asennus onnistui ilman ongelmia.
