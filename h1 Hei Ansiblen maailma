@@ -21,9 +21,9 @@ olin lisännyt koodia paikkaan johon ei tarvinnut, unohdin kopioida
 
 
 *** Kuvakaappaukset asennuksesta
-<img width="1325" height="723" alt="Asennus debian" src="https://github.com" />
-<img width="1325" height="735" alt="Asennus 2" src="https://github.com" />
-<img width="1325" height="719" alt="Asennus3" src="https://github.com" />
+<img width="1325" height="723" alt="asennus debian" src="https://github.com/user-attachments/assets/ec071836-7ebc-4421-a453-adda5be8d679" />
+<img width="1325" height="735" alt="Asennus 2" src="https://github.com/user-attachments/assets/f4e2dc40-1ae3-4824-be58-32dbac7f6e28" />
+<img width="1325" height="719" alt="asennus3" src="https://github.com/user-attachments/assets/11c07407-4f53-49cc-9936-34300bca6672" />
 
 ## Tehtävä B: Sshecrets
 Asennetaan OpenSSH-palvelin käsin ja testataan se.
@@ -49,8 +49,8 @@ ssh localhost
 exit
 ```
 *** kuvakaappaukset SSH-asennus ja testaus: 
-<img width="1530" height="719" alt="SSH asennus" src="https://github.com" />
-<img width="1325" height="719" alt="local host keygen" src="https://github.com" />
+<img width="1530" height="719" alt="SSH asennus" src="https://github.com/user-attachments/assets/c80609a9-1f3f-4c2a-9b3a-29f9917d3a42" />
+<img width="1722" height="719" alt="local host keygen" src="https://github.com/user-attachments/assets/786ec704-b0ce-4f40-9501-cce8477b64d0" />
 
 ** tehtävä C
 Pubkey
@@ -58,8 +58,8 @@ Noudatettu tehtävän annon ohjeistusta ja luotu ssh-keygen komennolla avainpari
 Ensimmäisellä kerralla annoin vahingossa salasanaksi saman joka minulla koneessa oli. mutta sitten tein uuden parin ja jätin koodin tyhjäksi. Sitten kun olin taas omat sähläykset korjannut sain testattua ssh localhost komennolla yhteyttä ja se aukesi ilman kummempia ongelmia.
 
 ### Kuvakaappaukset avaimen luonnista ja kopioinnista:
-<img width="1325" height="719" alt="Keygen" src="https://github.com" />
-<img width="1325" height="719" alt="onnistuminen" src="https://github.com" />
+<img width="1325" height="719" alt="Keygen" src="https://github.com/user-attachments/assets/32c7c519-d52d-4ab4-af2e-ad66a48745dd" />
+<img width="1325" height="719" alt="onnistuminen" src="https://github.com/user-attachments/assets/faca250e-85c8-4746-87b9-a904c628487a" />
 
 **  Tehtävä D
 Taas ohjeistusta seuraten päästiin jatkamaan Hei Ansible tehtävään. Hei Ansible ja alkuun Ansiblen asennus. Ohjeita noudattaen
@@ -101,5 +101,5 @@ Lopuksi komennon ajo ansible-playbook -i hosts.ini playbook.yml
 
 korjausten jälkeen ohjelma suoritti tehtävän virheettömästi loppuun ('ok=2')
 ### Kuvakaappaukset Ansiblen vaiheista ja onnistumisesta:
-<img width="1886" height="747" alt="ongelmia" src="https://github.com" />
-<img width="1886" height="719" alt="ja vikaa" src="https://github.com" />
+<img width="1886" height="747" alt="ongelmia" src="https://github.com/user-attachments/assets/3a5a8f23-1eef-43af-95af-932e86bc5e65" />
+<img width="1806" height="719" alt="ja vikaa" src="https://github.com/user-attachments/assets/76692791-2bde-4dd7-83b0-cfe3cc7f2dc2" />
