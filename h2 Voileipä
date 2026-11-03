@@ -45,12 +45,18 @@ sudo echo "see you at Terokarvinen.com"
 Komento tulosti tekstin suoraan ilman salasanakyselyä, joten salasanaton sudo ja tunnus toimivat täydellisesti.
 
 ** tehtävä c
-asennettu ymlillä 2 apt curl ja git.
-tarkistettu onnistuiko asennuset katsomalla ohjelmistojen versiot git --version ja curl --version.
-Git oli 2.47.3 ja Curl 8.14.1
+** tehtävä c
+Asennettu Ansible-playbookilla/roolilla kaksi pakettia: `curl` ja `git`.
+Tarkistettu onnistuivatko asennukset katsomalla ohjelmistojen versiot:
+* `git --version` -> Git versio oli 2.47.3
+* `curl --version` -> Curl versio oli 8.14.1
+
+![Pakettien versiotarkistus](Asennus.jpg)
 
 ** tehtävä d
-yaml
+Siirretty a- ja b-kohtien konfiguraatiot automaatioon ja tehty d-kohdan mukainen tiedosto roolin tehtävätiedostoon `roles/antero/tasks/main.yml`:
+
+```yaml
 - group:
     name: "sudoless"
     state: present
@@ -77,6 +83,22 @@ yaml
     owner: "antero"
     group: "antero"
     mode: "0600"
-                               - rwx r-- ---
-kirjain yhdistelmät ensimmäiset 3 rwx Read write ja execute toiset 3 omistava ryhmä r saa lukea ja kolmas kohta muut --- ei oikeuksia
+```
 
+![Playbookin koodi](tehtävä d.jpg)
+
+### Tiedosto-oikeuksien symbolisen muodon selitys
+
+Tehtävässä d käytetty oktaaliluku `"0600"` tarkoittaa symbolisessa muodossa **`-rw-------`**. 
+Esimerkkinä annettu muoto `"-rwxr--r--"` tarkoittaa laajempaa lukuoikeutta.
+
+Kirjainyhdistelmät jaetaan kolmen merkin ryhmiin (luetaan vasemmalta oikealle):
+1. **Ensimmäinen merkki (`-`):** Kertoo tiedostotyypin (tavallinen tiedosto).
+2. **Ensimmäiset 3 kirjainta (Käyttäjä/Omistaja):** `rw-` (tai esimerkin `rwx`). Tarkoittaa oikeuksia lukea (*Read*), kirjoittaa/muokata (*Write*) ja suorittaa (*Execute*). Meidän koodissamme omistaja `antero` saa lukea ja muokata tiedostoa.
+3. **Seuraavat 3 kirjainta (Omistava ryhmä):** Meidän koodissamme `---` (ryhmällä ei mitään oikeuksia). Esimerkissä `r--` tarkoittaa, että ryhmän jäsenet saavat vain lukea tiedostoa.
+4. **Viimeiset 3 kirjainta (Muut käyttäjät / "others"):** Meidän koodissamme `---` (muilla ei mitään oikeuksia). Esimerkissä `r--` tarkoittaa, että kaikilla muillakin järjestelmän käyttäjillä on lukuoikeus.
+
+Automaatio ajettiin onnistuneesti läpi päänäkymästä ja lopputulos tarkistettiin onnistuneesti `ls -l /srv/asennukset.txt` -komennolla.
+
+![Ansible playbookin onnistunut suoritus](asennukset.jpg)
+![Tiedoston oikeuksien tarkistus](Readwrite antero.jpg)
