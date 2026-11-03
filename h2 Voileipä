@@ -1,1 +1,82 @@
+# h1 Voileipä
+## tehtävä X
+
+Karvinen 2026: Sudo without password
+
+*Sudo-komennon salasanakyselyn voi poistaa muokkaamalla tiedostoa
+/etc/sudoers.d/sudoless
+*Muokataan editorilla visudo joka tarkistaa virheet ennen tallennusta
+*säännöksi tulee %sudoless ALL = (ALL) NOPASSWD: ALL
+*Säännöt päivittyvät vasta kun käyttäjä kirjautuu ulos ja takaisin sisään. Sitä ennen vanhat oikeudet voi nollata testausta varten komennolla sudo -k
+* Sudo visudo kuullostaa järkevältä vaihtoehdolta, että kone pysyy käyttökuntoisena ja ei tule rikotuksi muokkaamalla ilman testejä.
+
+Munroe 2006: xkcd 149: Sandwitch
+
+*Sarjakuvassa saa käyttämällä sudo komentoa leipää, ilman ei.
+
+Karvinen 2026: Passwordless Sudo with Ansible
+
+*Ansiblella usealle koneelle sudoles toiminto jäyttöön
+*Ansible voi toimia pääkäyttäjänä kohdepalvelimilla ilman salasanan syöttöä
+
+
+** tehtävä a
+seurattu vaihe vaiheelta Ohjeistusta ja luotu ryhmä ja käyttäjä.
+sudo adduser antero
+sudo groupadd sudoless
+sudo adduser antero sudoless
+
+** tehtävä b
+Jatkettu ohjeiden seuraamista ja ja visudoa käyttäen tehty vaaditut komennot
+sudo visudo /etc/sudoers.d/sudoless
+%sudoless ALL = (ALL) NOPASSWD: ALL
+%sudoless	Percent "%" means group
+ALL	All computers
+=	Literal equals "=", a separator
+(ALL)	Runas: may become any user, including root
+NOPASSWD	Tag: don't prompt for password
+:	Literal colon ":", a separator
+ALL	All commands permitted
+
+** tehtävät a & b
+Testattu kirjautumista anterona ja salasanatonta sudoa:
+ssh antero@localhost
+sudo echo "see you at Terokarvinen.com"
+Komento tulosti tekstin suoraan ilman salasanakyselyä, joten salasanaton sudo ja tunnus toimivat täydellisesti.
+
+** tehtävä c
+asennettu ymlillä 2 apt curl ja git.
+tarkistettu onnistuiko asennuset katsomalla ohjelmistojen versiot git --version ja curl --version.
+Git oli 2.47.3 ja Curl 8.14.1
+
+** tehtävä d
+yaml
+- group:
+    name: "sudoless"
+    state: present
+- user:
+    name: "antero"
+    state: present
+    groups: ["sudoless", "sudo", "adm"]
+- authorized_key:
+    user: "antero"
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK+I7t85Hjl87k9s9RAGIG+0MtgUoKKT1+05uA0edgGh m@m-virtualbox"
+- copy:
+    dest: "/etc/sudoers.d/sudoless"
+    content: "%sudoless ALL = (ALL) NOPASSWD: ALL\n"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+- apt:
+    name: ["curl", "git"]
+    state: present
+    update_cache: yes
+- copy:
+    dest: "/srv/asennukset.txt"
+    content: "useamman rivin mittainen tiedosto ja Ansible hallitsee tätä"
+    owner: "antero"
+    group: "antero"
+    mode: "0600"
+                               - rwx r-- ---
+kirjain yhdistelmät ensimmäiset 3 rwx Read write ja execute toiset 3 omistava ryhmä r saa lukea ja kolmas kohta muut --- ei oikeuksia
 
