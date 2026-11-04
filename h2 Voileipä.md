@@ -20,6 +20,11 @@ Karvinen 2026: Passwordless Sudo with Ansible
 *Ansible voi toimia pääkäyttäjänä kohdepalvelimilla ilman salasanan syöttöä
 
 
+Ansible doc
+*siellä ohjeita sovelluksen omista toiminnoista.
+*toimii kehittäjän apuna työskennellessä.
+
+
 ** tehtävä a
 Seurattu vaihe vaiheelta ohjeistusta ja luotu järjestelmään uusi ryhmä sekä käyttäjä käsin pääteikkunassa seuraavilla komennoilla:
 ```bash
