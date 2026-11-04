@@ -27,6 +27,9 @@ sudo adduser antero
 sudo groupadd sudoless
 sudo adduser antero sudoless
 ```
+https://github.com/Macobra87/h1-Hei-Ansiblen-maailma/blob/main/antero.jpg
+![Käyttäjän antero luonti](antero.jpg)
+
 
 ** tehtävä b
 Jatkettu ohjeiden seuraamista ja visudoa käyttäen tehty vaaditut asetukset ryhmälle:
@@ -61,7 +64,8 @@ Asennettu Ansible-playbookilla/roolilla kaksi pakettia: `curl` ja `git`.
 Tarkistettu onnistuivatko asennukset katsomalla ohjelmistojen versiot:
 * `git --version` -> Git versio oli 2.47.3
 * `curl --version` -> Curl versio oli 8.14.1
-
+https://github.com/Macobra87/h1-Hei-Ansiblen-maailma/blob/main/Asennus.jpg
+![Pakettien versiotarkistus](Asennus.jpg)
 
 ** tehtävä d
 Siirretty manuaalisesti testatut konfiguraatiot IaC-automaatioon (Infrastructure as Code). Luotiin Ansible-roolirakenne komennolla:
@@ -98,7 +102,8 @@ Tehtävät kirjoitettiin roolin tiedostoon `roles/antero/tasks/main.yml` käytt�
     owner: "antero"
     group: "antero"
     mode: "0600"
-```
+```https://github.com/Macobra87/h1-Hei-Ansiblen-maailma/blob/main/site.yml.jpg
+![Päänäkymän site.yml playbook](site.yml.jpg)
 
 Päänäkymän playbook `site.yml` luotiin komennolla `micro site.yml`:
 ```yaml
@@ -107,7 +112,7 @@ Päänäkymän playbook `site.yml` luotiin komennolla `micro site.yml`:
   become: true
   roles: ["antero"]
 ```
-
+![Päänäkymän site.yml playbook](site.yml.jpg)
 Automaatio ajettiin onnistuneesti läpi päänäkymästä komennolla:
 ```bash
 ansible-playbook -i hosts.ini site.yml -K
@@ -128,3 +133,17 @@ Kirjainyhdistelmät jaetaan kolmen merkin ryhmiin (luetaan vasemmalta oikealle):
 2. **Ensimmäiset 3 kirjainta (Käyttäjä/Omistaja):** `rw-` (tai esimerkin `rwx`). Tarkoittaa oikeuksia lukea (*Read*), kirjoittaa/muokata (*Write*) ja suorittaa (*Execute*). Meidän koodissamme omistaja `antero` saa lukea ja muokata tiedostoa.
 3. **Seuraavat 3 kirjainta (Omistava ryhmä):** Meidän koodissamme `---` (ryhmällä ei mitään oikeuksia). Esimerkissä `r--` tarkoittaa, että ryhmän jäsenet saavat vain lukea tiedostoa.
 4. **Viimeiset 3 kirjainta (Muut käyttäjät / "others"):** Meidän koodissamme `---` (muilla ei mitään oikeuksia). Esimerkissä `r--` tarkoittaa, että kaikilla muillakin järjestelmän käyttäjillä on lukuoikeus.
+https://github.com/Macobra87/h1-Hei-Ansiblen-maailma/blob/main/Readwrite%20antero.jpg
+https://github.com/Macobra87/h1-Hei-Ansiblen-maailma/blob/main/teht%C3%A4v%C3%A4%20d.jpg
+![Ansible-playbookin koodi micro-editorissa](teht%C3%A4v%C3%A4%20d.jpg)
+![Tiedoston oikeuksien ja luonnin tarkistus](Readwrite%20antero.jpg)
+
+Lähteet 
+Karvinen 2026: Sudo without password
+Munroe 2006: xkcd 149: Sandwitch
+Karvinen 2026: Passwordless Sudo with Ansible
+Kurssin luento 29.10.2026
+
+
+
+Muokattu tehtävää 4.11 yritetty onnistua kuvien lisäämisessä
