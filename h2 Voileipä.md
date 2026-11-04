@@ -144,10 +144,11 @@ https://github.com/Macobra87/h1-Hei-Ansiblen-maailma/blob/main/teht%C3%A4v%C3%A4
 ![Tiedoston oikeuksien ja luonnin tarkistus](Readwrite%20antero.jpg)
 
 Lähteet 
-Karvinen 2026: Sudo without password
-Munroe 2006: xkcd 149: Sandwitch
-Karvinen 2026: Passwordless Sudo with Ansible
-Kurssin luento 29.10.2026
+*Ansible- doc
+*Karvinen 2026: Sudo without password
+*Munroe 2006: xkcd 149: Sandwitch
+*Karvinen 2026: Passwordless Sudo with Ansible
+*Kurssin luento 29.10.2026
 
 
 
