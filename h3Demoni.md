@@ -36,7 +36,7 @@ Asennettiin Apache2-verkkopalvelin manuaalisesti järjestelmään ja varmistetti
 sudo apt update
 sudo apt install -y apache2
 ```
-
+![Apachen asennus paketinhallinnasta](asennukset.jpg)
 2. Koska koneella oli jo valmiina aiemmista harjoituksista luotu `publicsite/index.html` -tiedosto, muokattiin sen tekstisisältöä ilman sudo-oikeuksia komennolla:
 ```bash
 echo "<h1>Apache hoidettu kuntoon ja nyt testaillaan.</h1>" > /home/m/publicsite/index.html
@@ -63,6 +63,7 @@ sudo systemctl start nginx
 ```bash
 sudo micro /etc/nginx/sites-available/default
 ```
+![Nginxin default-tiedoston polku muokattuna](nginx%20conf.jpg)
 Etsittiin tiedostosta `root /var/www/html;` -rivi (noin riviltä 40) ja muutettiin se osoittamaan tavallisen käyttäjän kotisivukansioon:
 ```text
 root /home/m/publicsite;
@@ -73,6 +74,7 @@ root /home/m/publicsite;
 sudo nginx -t
 sudo systemctl restart nginx
 ```
+![Komentorivin hinkkaaminen porttien ja asennusten kanssa](Apache%20nginx%20k%C3%A4sin.jpg)
 Testikomento `sudo nginx -t` antoi onnistuneen tuloksen (`syntax is ok`, `test is successful`). Selaimella varmistettiin, että sivu latautuu nyt onnistuneesti suoraan Nginxin tarjoamana ja näyttää kotihakemistosta lukemansa tekstin: "Apache hoidettu kuntoon ja nyt testaillaan."
 
 
@@ -104,7 +106,7 @@ mkdir -p roles/nginx/tasks roles/nginx/handlers roles/nginx/files
     mode: "0644"
   notify: restart nginx
 ```
-
+![Luotu Nginxin tasks/main.yml -tiedosto](Tasks.main,yml.jpg)
 3. Määritettiin päänäkymän playbook `site.yml` ketjuttamaan kaikki kurssilla tähän asti tehdyt kolme roolia suoritettavaksi peräkkäin siistissä listassa:
 ```yaml
 ---
@@ -117,3 +119,13 @@ mkdir -p roles/nginx/tasks roles/nginx/handlers roles/nginx/files
 `[ERROR]: Task failed: ... Origin: /home/m/ansible/roles/nginx/tasks/main.yml:9:3`
 Virhe ilmoitti ongelman olevan rivillä 9, sarakkeessa 3 (`column 3`), jossa sijaitsee `- copy:` -tehtävän aloitus. Vaikka koodi näytti editorissa suoralta ja viiva oli vasemmassa laidassa, näkymätön sarkainmerkki (Tab) tai tyhjän rivin piilomerkki aiheutti YML-rakenteessa tulkintavirheen, johon automaation testaus tällä erää päättyi.
 
+![Debian-asennus virtuaalikoneelle](Asennus.jpg)
+![Sudoers-tiedoston virheen korjaus](virhe%20sudoless%20tekstiss%C3%A4.jpg)
+
+
+## Lähteet
+* Karvinen 2026: Apache installed with Ansible - quick notes. URL: https://terokarvinen.com
+* Ansible Community Documentation: Handlers: running operations on change. URL: https://ansible.com
+* Järjestelmän manuaalisivut: `ansible-doc service`
+* Kurssin oppitunnit ja käytännön harjoitukset (2026)
+* Apuna käytetty myös geminiä. Ymlien läpikäyntiä ja omia kirjoitusvirheitä etsiessä
