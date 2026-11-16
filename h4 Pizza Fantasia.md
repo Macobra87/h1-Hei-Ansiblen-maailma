@@ -56,14 +56,15 @@ Testasin demonin toiminnan komennolla curl -I http://localhost, joka palautti ti
 • curl -I http://localhost: Hakee paikallisen verkkopalvelimen HTTP-vastausotsikot ja todistaa palvelimen olevan toiminnassa (HTTP/1.1 200 OK).
 ![Lighttpd tarkastus](Ligttpd%20tarkastus.jpg)
 
-
+Tämän A tehtävän lähteenä kertasin edellisiä  tehtäviä ja omaa H3Demoni.md ja Karvinen 2026: Apache installed with Ansible. Demoniksi valitsin kevyen lighttpd -palvelimen teoälynperusteella (Google Gemini 2026).
 ## Tehtävä B
 
 Aloitin tehtävän luomalla Ansible-roolin kansiorakenteen (mkdir -p roles/lighttpd/{files,handlers,tasks}) ja kopioimalla toimivan oletusasetustiedoston roolin käyttöön (cp /etc/lighttpd/lighttpd.conf roles/lighttpd/files/lighttpd.conf).
 • mkdir -p roles/lighttpd/{files,handlers,tasks}: Luo Ansible-roolille tarvittavat alihakemistot asetustiedostoille, handlereille ja tehtäville yhdellä komennolla. ![Kansioiden handlerien ja tehtävien luonti](Kansioiden%20handlerien%20ja%20teht%C3%A4vien%20luonti.jpg)
 
-• cp /etc/lighttpd/lighttpd.conf roles/lighttpd/files/lighttpd.conf: Kopioi alkuperäisen ![Lighttpd kansiot](Lighttpd%20kansiot.jpg)
-.jpgasetustiedoston talteen roolin files-kansioon, jotta Ansible voi jakaa sen kohdekoneelle.
+* **cp /etc/lighttpd/lighttpd.conf roles/lighttpd/files/lighttpd.conf**: Kopioi alkuperäisen asetustiedoston talteen roolin files-kansioon, jotta Ansible voi jakaa sen kohdekoneelle.
+
+![Lighttpd kansiot](Lighttpd%20kansiot.jpg)
 Tämän jälkeen loin roolin tehtävätiedoston (micro roles/lighttpd/tasks/main.yml), johon määrittelin package–file–service-rakenteen (paketin asennus, asetustiedoston kopiointi ja palvelun käynnistys), sekä handler-tiedoston (micro roles/lighttpd/handlers/main.yml) palvelun uudelleenkäynnistystä varten. Lisäksi päivitin päätiedoston (micro site.yml), jotta se ajaa roolit ["antero", "lighttpd"].
 • micro roles/lighttpd/tasks/main.yml: Määrittelee Ansiblen suoritettavat tehtävät, joilla varmistetaan lighttpd-paketin asennus, asetustiedoston kopiointi ja palvelun päälläolo.
 • micro roles/lighttpd/handlers/main.yml: Määrittelee uudelleenkäynnistystoiminnon, jonka Ansible suorittaa automaattisesti vain silloin, kun asetustiedosto muuttuu.
@@ -72,14 +73,51 @@ Lopuksi ajoin playbookin komennolla ansible-playbook -i hosts.ini site.yml -K. E
 • ansible-playbook -i hosts.ini site.yml -K: Suorittaa määritellyn Ansible-playbookin kohdekoneelle ja kysyy pääkäyttäjän sudo-salasanan (-K) ennen muutosten tekemistä.
 ![site.yml ajo](site.yml%20ajo.jpg)
 
+Tehtävässä B hyödynsin aiempaa rakentamaani ~/ansible ympäristöäni sekä salasanatonta antero -tunnusta. Apunani oli myös aikaisempi H2voileipä.md, ja lisäksi h3Demoni.md ja Ansible Community Documentation 2026.
+
 ## Tehtävä C
 
 
-Aloitin tehtävän muokkaamalla herrakoneella olevaa lighttpd-demonin asetustiedostoa (micro roles/lighttpd/files/lighttpd.conf) ja vaihtamalla kuunneltavan verkkoportin oletusarvosta 80 porttiin 8082 (server.port = 8082).
+Aloitin tehtävän muokkaamalla herrakoneella olevaa lighttpd-demonin asetustiedostoa (micro roles/lighttpd/files/lighttpd.conf) ja vaihtamalla kuunneltavan verkkoportin oletusarvosta 80 porttiin 8082 (server.port = 8082)![Porttimuunnos](Porttimuunnos.jpg).
 • micro roles/lighttpd/files/lighttpd.conf: Avaa herrakoneella sijaitsevan asetustiedoston muokattavaksi, jotta palvelimen kuunteluportti voidaan vaihtaa.
-Tämän jälkeen ajoin Ansible-playbookin uudestaan komennolla ansible-playbook -i hosts.ini site.yml -K. Aiemmilla yrityksillä handlerin käynnistys epäonnistui pienen kirjoitusvirheen vuoksi, mutta korjattuani sen ajo onnistui virheittä (ok=11, changed=2, failed=0). Tulosteesta näkyi, että Ansible kopioi päivitetyn asetustiedoston kohdekoneelle ja suoritti automaattisesti lighttpd restart -handlerin palvelun uudelleenkäynnistämiseksi.
+Tämän jälkeen ajoin Ansible-playbookin uudestaan komennolla ansible-playbook -i hosts.ini site.yml -K.![Kirjoitushärö ja korjaus](Kirjoitush%C3%A4r%C3%B6%20ja%20korjaus.jpg) Aiemmilla yrityksillä handlerin käynnistys epäonnistui pienen kirjoitusvirheen vuoksi, mutta korjattuani sen ajo onnistui virheittä (ok=11, changed=2, failed=0). Tulosteesta näkyi, että Ansible kopioi päivitetyn asetustiedoston kohdekoneelle ja suoritti automaattisesti lighttpd restart -handlerin palvelun uudelleenkäynnistämiseksi.
 • ansible-playbook -i hosts.ini site.yml -K: Suorittaa playbookin uudestaan, havaitsee asetustiedoston muutoksen (changed=2) ja käynnistää palvelun uudelleen handlerin avulla.
-(Liitä tähän kuvakaappaus changed=2 ja RUNNING HANDLER -ajosta)
 Lopuksi osoitin asetusten tulleen käyttöön testaamalla yhteyttä uuteen porttiin komennolla curl -I http://localhost:8082, joka palautti tilakoodin HTTP/1.1 200 OK ja vahvisti lighttpd-palvelimen vastaavan uudessa portissa.
 • curl -I http://localhost:8082: Hakee HTTP-vastausotsikot uudesta portista 8082 ja todistaa muutetun asetuksen tulleen voimaan (HTTP/1.1 200 OK).
-(Liitä tähän kuvakaappaus curl -I http://localhost:8082 -testistä)
+![Curl 8082 testaus](curl8082.jpg)
+(Karvinen 2026: Palvelinten hallinta)
+## Tehtävä D
+
+Aloitin tehtävän rikkomalla kokoonpanon poistamalla `lighttpd`-demonin ja sen asetustiedostot komennolla `sudo apt-get purge -y lighttpd`. Tämän jälkeen varmistin komennolla `curl -I http://localhost:8082`, ettei palvelu enää vastaa (`Could not connect to server`).
+
+* **sudo apt-get purge -y lighttpd**: Poistaa lighttpd-ohjelmistopaketin sekä sen asetustiedostot järjestelmästä ilman erillisiä vahvistuskysymyksiä (-y).
+
+![Lighttpd poistettu purge-komennolla](Poistettu%20lighttpd.jpg)
+
+Seuraavaksi korjasin tilanteen ajamalla Ansible-playbookin uudestaan komennolla `ansible-playbook -i hosts.ini site.yml -K` (*Karvinen 2026: Palvelinten hallinta*). Ansible havaitsi puuttuvan paketin ja asetustiedoston, asensi demonin uudelleen, palautti muokatun asetustiedoston ja käynnisti palvelun automaattisesti uudelleen.
+
+* **ansible-playbook -i hosts.ini site.yml -K**: Palauttaa kokoonpanon määriteltyyn tilaan asentamalla puuttuvan demonin, kopioimalla muokatun asetustiedoston ja käynnistämällä palvelun.
+
+![Tehtävä D korjausajo](teht%C3%A4v%C3%A4%20d.jpg)
+
+Lopuksi todistin kokoonpanon palautuneen ennalleen ajamalla testikomennon `curl -I http://localhost:8082`, joka palautti jälleen tilakoodin `HTTP/1.1 200 OK` ja osoitti myös muutetun porttiasetuksen palautuneen käyttöön.
+
+* **curl -I http://localhost:8082**: Varmistaa, että Ansible on palauttanut sekä palvelun toiminnan että muokatun porttiasetuksen (`HTTP/1.1 200 OK`).
+
+![Uudelleen asennus ja testaus](uudelleen%20asennus.jpg)
+
+## Lähteet
+
+### Kirjat ja artikkelit
+* Karvinen, Tero 2023: *Configuration Management of Distributed Systems over Unreliable and Hostile Networks*. Väitöskirja, luku 4.12 (s. 112–117). Luettavissa: https://terokarvinen.com (Viitattu 16.11.2026.)
+* Karvinen, Tero 2026: *Palvelinten hallinta – h4 Pizza Fantasia*. Kurssisivu. Luettavissa: https://terokarvinen.com (Viitattu 16.11.2026.)
+* Karvinen, Tero 2026: *Apache installed with Ansible – quick notes*. Luettavissa: https://terokarvinen.com (Viitattu 16.11.2026.)
+* Ansible Community Documentation 2026: *Handlers: running operations on change* sekä sisäänrakennettu `ansible-doc` (`apt`, `copy`, `service`). Luettavissa: https://ansible.com (Viitattu 16.11.2026.)
+
+### Omat aiemmat raportit (pohja-asetukset ja kertaus)
+* Macobra87 2026: *h1 Hei Ansiblen maailma* (SSH-yhteys ja Ansiblen perusasetukset). Luettavissa: https://github.com (Viitattu 16.11.2026.)
+* Macobra87 2026: *h2 Voileipä.md* (Salasanaton sudo ja `antero`-käyttäjän automatisointi). Luettavissa: https://github.com (Viitattu 16.11.2026.)
+* Macobra87 2026: *h3Demoni.md* (`package–file–service`-malli, Apache2- ja Nginx-demonien hallinta). Luettavissa: https://github.com (Viitattu 16.11.2026.)
+
+### Tekoälyn käyttö
+* Google Gemini (Gemini 4 Hydrogen) 2026: Kysytty tekoälyltä neuvoa sopivan uuden demonin valintaan (`lighttpd`), roolitiedostojen ja handlerin kirjoitusvirheiden selvittämiseen sekä GitHub Markdown -kuvalinkkien muotoiluun (kehotteet mm. *"mikä malli olet"*, *"annatko handlerin microon mielummin"*, *"kuvat on linkkeinä annatko niille kohteet että ne toimii kuvakaappauksina"*).
