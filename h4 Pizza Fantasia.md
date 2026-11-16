@@ -98,14 +98,14 @@ Seuraavaksi korjasin tilanteen ajamalla Ansible-playbookin uudestaan komennolla 
 
 * **ansible-playbook -i hosts.ini site.yml -K**: Palauttaa kokoonpanon määriteltyyn tilaan asentamalla puuttuvan demonin, kopioimalla muokatun asetustiedoston ja käynnistämällä palvelun.
 
-![Tehtävä D korjausajo](teht%C3%A4v%C3%A4%20d.jpg)
+
 
 Lopuksi todistin kokoonpanon palautuneen ennalleen ajamalla testikomennon `curl -I http://localhost:8082`, joka palautti jälleen tilakoodin `HTTP/1.1 200 OK` ja osoitti myös muutetun porttiasetuksen palautuneen käyttöön.
 
 * **curl -I http://localhost:8082**: Varmistaa, että Ansible on palauttanut sekä palvelun toiminnan että muokatun porttiasetuksen (`HTTP/1.1 200 OK`).
 
-![Uudelleen asennus ja testaus](uudelleen%20asennus.jpg)
 
+![Curl 8082 testaus](curl8082.jpg)
 ## Lähteet
 
 ### Kirjat ja artikkelit
@@ -120,4 +120,4 @@ Lopuksi todistin kokoonpanon palautuneen ennalleen ajamalla testikomennon `curl 
 * Macobra87 2026: *h3Demoni.md* (`package–file–service`-malli, Apache2- ja Nginx-demonien hallinta). Luettavissa: https://github.com (Viitattu 16.11.2026.)
 
 ### Tekoälyn käyttö
-* Google Gemini (Gemini 4 Hydrogen) 2026: Kysytty tekoälyltä neuvoa sopivan uuden demonin valintaan (`lighttpd`), roolitiedostojen ja handlerin kirjoitusvirheiden selvittämiseen sekä GitHub Markdown -kuvalinkkien muotoiluun (kehotteet mm. *"mikä malli olet"*, *"annatko handlerin microon mielummin"*, *"kuvat on linkkeinä annatko niille kohteet että ne toimii kuvakaappauksina"*).
+* Google Gemini (Gemini 4 Hydrogen) 2026: Kysytty tekoälyltä neuvoa sopivan uuden demonin valintaan (`lighttpd`), roolitiedostojen ja handlerin kirjoitusvirheiden selvittämiseen sekä GitHub Markdown -kuvalinkkien muotoiluun.
