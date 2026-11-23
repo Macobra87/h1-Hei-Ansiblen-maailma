@@ -48,4 +48,36 @@ Tarkastelin varaston commit-historiaa ja tiedostoihin tehtyjä muutoksia komenno
 
 * **git log --patch**: Näyttää varaston commit-historian sekä jokaisen tallennuksen tarkat rivikohtaiset muutokset.
 * **git config --global user.name** (ja **user.email**): Tulostaa Gitin globaalit käyttäjäasetukset ja varmistaa, että commitien tekijätiedot näkyvät oikein.
+* ## Tehtävä E
+
+Siirryin aiemmissa harjoituksissa rakennettuun `~/ansible`-kansioon ja alustin sen paikalliseksi Git-varastoksi komennolla `git init` (*Git Cheat Sheet 2026*). Lisäsin kaikki olemassa olevat Ansible-roolit ja -tiedostot seurantaan (`git add --all`) ja tallensin lähtötilanteen ensimmäiseksi versioksi (`git commit -m "initialize Ansible configuration repository"`).
+
+* **git init**: Luo kansioon uuden paikallisen Git-tietokannan (`.git`-piilohakemiston) versionhallintaa varten.
+
+*(Liitä tähän kuvakaappaus `git init` -alustuksesta)*
+
+Tämän jälkeen tein pienen muutoksen `site.yml`-tiedostoon lisäämällä sen loppuun kommenttirivin `# Hallitaan Gitilla`, ajoin kokoonpanon läpi komennolla `ansible-playbook -i hosts.ini site.yml -K` ja tallensin toimivan muutoksen uutena versiona (`git commit -m "Add Git comment to site.yml"`). Lopuksi varmistin komennolla `git log --oneline`, että molemmat versiot tallentuivat historiaan.
+
+* **git log --oneline**: Tulostaa tiiviin yhteenvedon varaston commit-historiasta (tunnisteet ja commit-viestit).
+
+*(Liitä tähän kuvakaappaus onnistuneesta Ansible-ajosta ja `git log --oneline` -tulosteesta)*
+
+## Tehtävä F
+
+Miniprojektin pari on hankittu kurssin Moodle-keskustelualueen kautta (*Karvinen 2026: Palvelinten hallinta*).
+
+## Lähteet
+
+### Kirjat ja artikkelit
+* Chacon, Scott & Straub, Ben 2014: *Pro Git*, 2nd Edition, luku *1.3 Getting Started – What is Git?*. Luettavissa: https://git-scm.com (Viitattu 23.11.2026.)
+* Git 2026: *Git Cheat Sheet* ja dokumentaatio. Luettavissa: https://git-scm.com (Viitattu 23.11.2026.)
+* GNU Project 2026: *GNU Bash Reference Manual – 3.2.4 Lists of Commands* (sekä `man bash`). Luettavissa: https://gnu.org (Viitattu 23.11.2026.)
+* Karvinen, Tero 2026: *Palvelinten hallinta – h5 Gitar Hero*. Kurssisivu. Luettavissa: https://terokarvinen.com (Viitattu 23.11.2026.)
+
+### Omat aiemmat raportit
+* Macobra87 2026: *h4 Pizza Fantasia.md* (`~/ansible`-kansio ja `lighttpd`-rooli). Luettavissa: https://github.com (Viitattu 23.11.2026.)
+
+### Tekoälyn käyttö
+* Google Gemini 2026: Kysytty tekoälyltä apua Git- ja Bash-komentojen tarkistamiseen, SSH-avaimen käyttöönoton virheilmoituksen (`Permission denied`) selvittämiseen sekä raportin rakenteen ja lähdeluettelon muotoiluun (kehotteet mm. *"annatko mistä && ja ;: komennot löytäisi"*, *"miten pääsen lokista pois"*, *"c ja d selosteet"*).
+
 
