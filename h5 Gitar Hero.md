@@ -25,19 +25,42 @@ Hyödysin https://git-scm.com/ sivuston https://git-scm.com/cheat-sheet Cheat sh
 ## Tehtävä A
 
 Luotu uusi varasto githubiin.
+
+![Sunshine repository luonti](Sunshine%20repository.jpg)
+
 Aloitettu etsimällä kohta; Create a new repository.
 annettu nimi NOsunshine ja kuvaus practiseSunshine.
 Otettu tehtävästä kuvat luonti osiosta ja luodusta repositorystä. Tämän jälkeen kopioin vihreän Code napin alta SSH linkin.
 Lisätty oikeudet githubiin asetuksista.
 
+![Valmis repo](valmis%20repo.jpg)
+
 
 ## Tehtävä B
 
-Kloonattu onnistuneesti tehty kansio Debianiin git clone git@github.com:Macobra87/NOsunshine.git. tämän jälkeen muokattu README.md tiedostoa. muutoksen jälkeen git add --all jonka jälkeen commit. Tehty nimetty testi ja sitten push komennolla siirretty tehdyt muutokset eteenpäin. Tulokset löytyivät githubista.
+Kloonattu onnistuneesti tehty kansio Debianiin git clone git@github.com:Macobra87/NOsunshine.git. 
+![SSHpub ja kloonaus](SSHpub.jpg)
 
+Tämän jälkeen muokattu README.md tiedostoa. muutoksen jälkeen git add --all jonka jälkeen commit. Tehty nimetty testi ja sitten push komennolla siirretty tehdyt muutokset eteenpäin. Tulokset löytyivät githubista.
+
+![Muunnos Linuxissa](Muunnos%20Linuxissa.jpg)
+
+![Git työntö](Git%20ty%C3%B6nt%C3%B6.jpg)
+
+![Muutos onnistui GitHubissa](Muutos%20onnistui.jpg)
 ## Tehtävä C
 
-Aloitin tehtävän tekemällä `README.md`-tiedostoon tarkoituksella huonon muutoksen ilman committia (`echo "Huono testi ilman committia" >> README.md`) ja tarkistamalla tilan komennoilla `cat README.md` sekä `git status`. Tämän jälkeen tuhosin tallentamattoman muutoksen pysyvästi komennolla `git reset --hard`, jolloin tiedosto palautui täsmälleen edellisen commitin mukaiseen tilaan.
+Aloitin tehtävän tekemällä `README.md`-tiedostoon tarkoituksella huonon muutoksen ilman committia (`echo "Huono testi ilman committia" >> README.md`) ja tarkistamalla tilan komennoilla `cat README.md` sekä `git 
+status`.
+![Sutta ja sekundaa](Sutta%20ja%20sekundaa.jpg)
+
+![Git tila](git%20tila.jpg)
+
+Tämän jälkeen tuhosin tallentamattoman muutoksen pysyvästi komennolla `git reset --hard`,
+
+![Sutta ja sekundaa reset](sutta%20ja%20sekundaa%20reset.jpg)
+
+jolloin tiedosto palautui täsmälleen edellisen commitin mukaiseen tilaan.
 
 * **git status**: Näyttää työhakemiston tilan ja paljastaa, että `README.md`-tiedostoa on muokattu mutta muutoksia ei ole vielä lisätty tai tallennettu.
 * **git reset --hard**: Kumoaa kaikki tallentamattomat muutokset työhakemistosta ja palauttaa tiedostot edellisen commitin tilaan ilman peruutusmahdollisuutta.
@@ -45,10 +68,12 @@ Aloitin tehtävän tekemällä `README.md`-tiedostoon tarkoituksella huonon muut
 ## Tehtävä D
 
 Tarkastelin varaston commit-historiaa ja tiedostoihin tehtyjä muutoksia komennolla `git log --patch`. Tulosteesta näkyi jokaisen commitin yksilöllinen tunniste (hash), tekijän nimi ja sähköposti, aikaleima, commit-viesti sekä tarkat rivikohtaiset muutokset (`+`-merkillä lisätyt rivit). Lopuksi tarkistin komennoilla `git config --global user.name` ja `git config --global user.email`, että omat käyttäjätietoni ovat oikein.
+![Loki](loki.jpg)
+![Nimi ja sähköposti](mimi%20sposti%27.jpg)
 
 * **git log --patch**: Näyttää varaston commit-historian sekä jokaisen tallennuksen tarkat rivikohtaiset muutokset.
 * **git config --global user.name** (ja **user.email**): Tulostaa Gitin globaalit käyttäjäasetukset ja varmistaa, että commitien tekijätiedot näkyvät oikein.
-* ## Tehtävä E
+ ## Tehtävä E
 
 Siirryin aiemmissa harjoituksissa rakennettuun `~/ansible`-kansioon ja alustin sen paikalliseksi Git-varastoksi komennolla `git init` (*Git Cheat Sheet 2026*). Lisäsin kaikki olemassa olevat Ansible-roolit ja -tiedostot seurantaan (`git add --all`) ja tallensin lähtötilanteen ensimmäiseksi versioksi (`git commit -m "initialize Ansible configuration repository"`).
 
@@ -61,6 +86,7 @@ Tämän jälkeen tein pienen muutoksen `site.yml`-tiedostoon lisäämällä sen 
 * **git log --oneline**: Tulostaa tiiviin yhteenvedon varaston commit-historiasta (tunnisteet ja commit-viestit).
 
 *(Liitä tähän kuvakaappaus onnistuneesta Ansible-ajosta ja `git log --oneline` -tulosteesta)*
+![Ansible ja log](ansible%20ja%20log.jpg)
 
 ## Tehtävä F
 
