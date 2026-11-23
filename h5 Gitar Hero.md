@@ -79,13 +79,13 @@ Siirryin aiemmissa harjoituksissa rakennettuun `~/ansible`-kansioon ja alustin s
 
 * **git init**: Luo kansioon uuden paikallisen Git-tietokannan (`.git`-piilohakemiston) versionhallintaa varten.
 
-*(Liitä tähän kuvakaappaus `git init` -alustuksesta)*
+
 
 Tämän jälkeen tein pienen muutoksen `site.yml`-tiedostoon lisäämällä sen loppuun kommenttirivin `# Hallitaan Gitilla`, ajoin kokoonpanon läpi komennolla `ansible-playbook -i hosts.ini site.yml -K` ja tallensin toimivan muutoksen uutena versiona (`git commit -m "Add Git comment to site.yml"`). Lopuksi varmistin komennolla `git log --oneline`, että molemmat versiot tallentuivat historiaan.
 
 * **git log --oneline**: Tulostaa tiiviin yhteenvedon varaston commit-historiasta (tunnisteet ja commit-viestit).
 
-*(Liitä tähän kuvakaappaus onnistuneesta Ansible-ajosta ja `git log --oneline` -tulosteesta)*
+
 ![Ansible ja log](ansible%20ja%20log.jpg)
 
 ## Tehtävä F
